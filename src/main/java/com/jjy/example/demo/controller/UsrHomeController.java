@@ -13,6 +13,20 @@ public class UsrHomeController {
 		return "안녕";
 	}
 	
+	@RequestMapping("/usr/home/main2")
+	@ResponseBody
+	
+	public String showMain2() {
+		return "반갑소";
+	}
+	
+	@RequestMapping("/usr/home/main3")
+	@ResponseBody
+	
+	public String showMain3() {
+		return "씨유어게인";
+	}
+	
 	
 	
 
