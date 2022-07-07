@@ -1,71 +1,25 @@
 package com.jjy.example.demo.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.jjy.example.demo.vo.Article;
 
-@Component
-public class ArticleRepository {
-	private List<Article> articles;
-		private int articlesLastId;
-
-	public ArticleRepository() {
-		articlesLastId = 0;
-		articles = new ArrayList<>();
-
-	}
-
-	public void makeTestData() {
-		for (int i = 1; i <= 10; i++) {
-			String title = "제목 " + i;
-			String body = "내용 " + i;
-
-			writeArticle(title, body);
-		}
-	}
-	
-
-	
-	public Article writeArticle(String title, String body) {
-		int id = articlesLastId + 1;
-		Article article = new Article(id, title, body);
-
-		articles.add(article);
-		articlesLastId = id;
+@Mapper
+public interface ArticleRepository {
 		
-		return article;
-	}
+	public Article writeArticle(String title, String body);
 	
-	public Article getArticle(int id) {
-		for(Article article : articles) {
-			if (article.getId() == id) {
-				return article;
-			}
-		}
-		
-		return null;
-	}
+	@Select("select * from article where id = #{id}")
+	public Article getArticle(@Param("id") int id);
 	
-	public void deleteArticle(int id) {
-		Article article = getArticle(id);
-		articles.remove(article);
-		
-	}
+	public void deleteArticle(int id);
 	
-	public void ModifyArticle(int id, String title, String body) {
-		Article article = getArticle(id);
-		
-		article.setTitle(title);
-		article.setBody(body);
-		
-	}
+	public void ModifyArticle(int id, String title, String body);
 
-
-	public List<Article> getArticles() {
-		return articles;
-	}
+	public List<Article> getArticles();
 
 	}
