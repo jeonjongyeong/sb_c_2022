@@ -15,7 +15,6 @@ public class UsrArticleController {
 	@Autowired
 	private ArticleService articleService;
 
-	
 	// 액션 메서드 시작
 	@RequestMapping("/usr/article/doAdd")
 	@ResponseBody
@@ -30,29 +29,29 @@ public class UsrArticleController {
 
 		return articleService.getArticles();
 	}
-	
+
 	@RequestMapping("/usr/article/getArticle")
 	@ResponseBody
 	public Object getArticleAction(int id) {
 		Article article = articleService.getArticle(id);
-		
-		if(article == null) {
+
+		if (article == null) {
 			return id + "번 게시물이 존재하지 않습니다.";
 		}
-		
+
 		return article;
 	}
 
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
 	public String doDelete(int id) {
-		
+
 		Article article = articleService.getArticle(id);
-		
+
 		if (article == null) {
 			return id + "번 게시물이 존재하지 않습니다.";
 		}
-		
+
 		articleService.deleteArticle(id);
 
 		return id + "번 게시물이 삭제되었습니다.";
@@ -61,23 +60,17 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/doModify")
 	@ResponseBody
 	public String doModify(int id, String title, String body) {
-		
+
 		Article article = articleService.getArticle(id);
-		
+
 		if (article == null) {
 			return id + "번 게시물이 존재하지 않습니다.";
 		}
-		
+
 		articleService.ModifyArticle(id, title, body);
 
 		return id + "번 게시물이 수정되었습니다.";
 	}
-	
-	
-
-
-	
-
 
 	// 액션 메서드 끝
 
