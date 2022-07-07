@@ -57,6 +57,17 @@ public class UsrHomeController {
 		return 'c';
 	}
 	
+	@RequestMapping("/usr/home/getList")
+	@ResponseBody
+	
+	public List<String> getList() {
+		List<String> list = new ArrayList<>();
+		list.add("철수");
+		list.add("종영");
+		return list;
+	}
+	
+	
 	@RequestMapping("/usr/home/getMap")
 	@ResponseBody
 	
@@ -68,12 +79,6 @@ public class UsrHomeController {
 		return map;
 	}
 	
-	@RequestMapping("/usr/home/getList")
-	@ResponseBody
-	
-	public List<String> getList() {
-
-	}
 	
 	@RequestMapping("/usr/home/getArticle")
 	@ResponseBody
